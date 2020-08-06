@@ -1,7 +1,7 @@
 package hu.ak_academy.dds;
 
-public class DDS {
+public class DSS {
 	public static void main(String[] args) {
-		System.out.println("Hello DDS!");
+		System.out.println("Hello DSS!");
 	}
 }

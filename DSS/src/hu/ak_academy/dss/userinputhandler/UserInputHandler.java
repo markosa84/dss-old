@@ -6,20 +6,31 @@ import java.util.Scanner;
 public class UserInputHandler {
 
 	private Scanner input;
-	private List<String> nameOfOrgans;
-
-	public UserInputHandler(Scanner input, List<String> nameOfOrgans) {
+	
+	public UserInputHandler(Scanner input) {
 		this.input = input;
-		this.nameOfOrgans = nameOfOrgans;
 	}
 
-	public String getBodyPart() {
-		String userGivenOrgan;
+	public String getUserChoice(List<String> choices) {
+		String userChoice;
 		do {
-			System.out.println("Please enter the organ: ");
-			userGivenOrgan = input.next();
-		} while (!nameOfOrgans.contains(userGivenOrgan));
-		return userGivenOrgan;
+			System.out.print("Please enter your selection: ");
+			userChoice = input.nextLine();
+		} while (!choices.contains(userChoice));
+		
+		return userChoice;
+	}
+
+	
+	// This is not nice, need to merge these two methods better
+	public String getUserChoice(List<String> choices, String prompt) {
+		String userChoice;
+		do {
+			System.out.print(prompt);
+			userChoice = input.nextLine();
+		} while (!choices.contains(userChoice));
+		
+		return userChoice;
 	}
 
 }

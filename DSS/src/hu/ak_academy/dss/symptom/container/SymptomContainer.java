@@ -26,57 +26,18 @@ public class SymptomContainer {
 	public void add(Symptom symptom) {
 		symptoms.add(symptom);
 	}
-	
-	public List<String> getSymptomCategoryLabels() {
-		List<String> symptomCategoryLabels = new ArrayList<>();
 
-		for (Symptom symptom : symptoms) {
-			String label = symptom.getSymptomCategory().getLabel();
-			if (! symptomCategoryLabels.contains(label)) {
-				symptomCategoryLabels.add(label);
-			}
-		}
-		
-		return symptomCategoryLabels;
-	}
-
-	public List<String> getSymptomLabels() {
-		List<String> symptomLabels = new ArrayList<>();
-
-		for (Symptom symptom : symptoms) {
-			String label = symptom.getLabel();
-			if (! symptomLabels.contains(label)) {
-				symptomLabels.add(label);
-			}
-		}
-		
-		return symptomLabels;
-	}
-
-	public List<String> getSymptomStateLabels() {
-		List<String> symptomStateLabels = new ArrayList<>();
-
-		for (SymptomState symptomState : SymptomState.values()) {
-			String label = symptomState.getLabel();
-			if (! symptomStateLabels.contains(label)) {
-				symptomStateLabels.add(label);
-			}
-		}
-		
-		return symptomStateLabels;
-	}
-
-//	public List<SymptomCategory> getSymptomCategories() {
-//		List<SymptomCategory> symptomCategories = new ArrayList<>();
+//	public List<String> getSymptomStateLabels() {
+//		List<String> symptomStateLabels = new ArrayList<>();
 //
-//		for (Symptom symptom : symptoms) {
-//			SymptomCategory category = symptom.getSymptomCategory();
-//			if (! symptomCategories.contains(category)) {
-//				symptomCategories.add(category);
+//		for (SymptomState symptomState : SymptomState.values()) {
+//			String label = symptomState.getLabel();
+//			if (! symptomStateLabels.contains(label)) {
+//				symptomStateLabels.add(label);
 //			}
 //		}
 //		
-//		return symptomCategories;
+//		return symptomStateLabels;
 //	}
 
 	public SymptomContainer filterSymptomsByCategory(SymptomCategory filter) {

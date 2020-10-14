@@ -1,7 +1,6 @@
 package hu.ak_academy.dss.symptom;
 
 import hu.ak_academy.dss.symptom.state.SymptomState;
-import hu.ak_academy.dss.userinputhandler.UserInputHandler;
 
 public abstract class AbstractSymptom implements Symptom {
 
@@ -9,12 +8,13 @@ public abstract class AbstractSymptom implements Symptom {
 	private SymptomState symptomState = SymptomState.NC;
 	
 	// this property is used for what exactly? Do we need it later? To be clarified w Reza
-	protected UserInputHandler userInput;
+//	protected UserInputHandler userInput;
+//	
+//	public AbstractSymptom(UserInputHandler userInput) {
+//		this.userInput = userInput;
+//	}
 	
-	public AbstractSymptom(UserInputHandler userInput) {
-		this.userInput = userInput;
-	}
-	
+
 	// method to get the state of the Symtpom
 	public final SymptomState getSymptomState() {
 		return this.symptomState;
@@ -32,10 +32,13 @@ public abstract class AbstractSymptom implements Symptom {
 	
 	// we will need to compare symptom Objects based on the actual class (if using multiple classes, and on the state of the symptom)
 	@Override
-	public final boolean equals(Symptom otherSymptom) {
-		
+	public boolean equals(Object other) {
+		if (other == null) return false;
+	    if (other == this) return true;
+	    if (!(other instanceof Symptom)) return false;
+	    
+	    Symptom otherSymptom = (Symptom) other;
+	    
 		return this.getClass().equals(otherSymptom.getClass()) && this.symptomState == otherSymptom.getSymptomState();
-		
 	}
-
 }

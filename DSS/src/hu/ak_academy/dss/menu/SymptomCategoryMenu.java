@@ -1,24 +1,26 @@
 package hu.ak_academy.dss.menu;
 
+import java.util.ArrayList;
+import java.util.List;
+import hu.ak_academy.dss.menu.item.SymptomCategoryMenuItem;
+import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
 import hu.ak_academy.dss.symptom.Symptom;
 import hu.ak_academy.dss.symptom.category.SymptomCategory;
 import hu.ak_academy.dss.symptom.container.SymptomContainer;
 import hu.ak_academy.dss.symptom.state.SymptomState;
-import hu.ak_academy.dss.userinputhandler.UserInputHandler;
 
-public class SymptomCategoryMenu extends AbstractCLIMenu {
+public class SymptomCategoryMenu extends AbstractCLIMenu <SymptomCategoryMenuItem> {
 
 	protected SymptomContainer symptomContainer;
 
 	public SymptomCategoryMenu(UserInputHandler userInputHandler, SymptomContainer symptomContainer) {
-		super(userInputHandler, symptomContainer.getSymptomCategoryLabels());
+		super(userInputHandler, menuBuilder(symptomContainer));
 		
 		this.symptomContainer = symptomContainer;
 	}
 	
-	@Override
-	protected void displayExtrtaMenuInformation(int index, String menuItem) {
-		SymptomContainer subItems = symptomContainer.filterSymptomsByCategory(SymptomCategory.getByLabel(menuItem));
+	protected void displayExtrtaMenuInformation(SymptomCategoryMenuItem menuItem) {
+		SymptomContainer subItems = symptomContainer.filterSymptomsByCategory(menuItem.getSymptomCategory());
 
 		System.out.println();
 		
@@ -41,24 +43,41 @@ public class SymptomCategoryMenu extends AbstractCLIMenu {
 		System.out.println("=====================");		
 	}
 	
-	protected boolean process(String userChoice) {
+	protected boolean process(SymptomCategoryMenuItem userChoice) {
 		// TBD, this is not working yet
 		if (userChoice.equals("diag")) {
 			System.out.println("Runing diagnostics to analyze symptoms");
 		}
 		
 		// TBD, this is not working yet
-		if (userChoice.equals("quit")) {
+		if (userChoice.equals("exit")) {
 			return false;
 		}
 
 		System.out.println();
 		
 		// Launch sub-menu with the selected Symptom category
-		SymptomCategory chosenCategory = SymptomCategory.getByLabel(userChoice);
-		new SymptomSelectorMenu(userInputHandler, symptomContainer, chosenCategory).execute();
+		SymptomCategory chosenCategory = userChoice.getSymptomCategory();
+		new SymptomSelectorMenu(this.userInputHandler, symptomContainer, chosenCategory).execute();
 
 		return true; // just go for new iteration
+	}
+	
+	private static List<SymptomCategoryMenuItem> menuBuilder(SymptomContainer symptomContainer) {
+		List<SymptomCategoryMenuItem> menuItems = new ArrayList<>();
+
+		int index = 1;
+		for (Symptom symptom : symptomContainer.getSymptoms()) {
+			SymptomCategoryMenuItem menuItem =
+					new SymptomCategoryMenuItem("" + index, symptom.getSymptomCategory());
+			
+			if (! menuItems.contains(menuItem)) {
+				menuItems.add(menuItem);
+				index++;
+			}
+		}
+			
+		return menuItems;
 	}
 
 }

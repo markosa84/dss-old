@@ -1,60 +1,40 @@
 package hu.ak_academy.dss.menu;
 
-import java.util.ArrayList;
-import java.util.List;
+import hu.ak_academy.dss.menu.container.MenuContainer;
+import hu.ak_academy.dss.menu.item.DecoratorMenuItem;
 import hu.ak_academy.dss.menu.item.SymptomSelectorMenuItem;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
 import hu.ak_academy.dss.symptom.Symptom;
 import hu.ak_academy.dss.symptom.category.SymptomCategory;
 import hu.ak_academy.dss.symptom.container.SymptomContainer;
 
-public class SymptomSelectorMenu extends AbstractCLIMenu <SymptomSelectorMenuItem> {
-
-	protected SymptomContainer symptomContainer;
-	protected SymptomCategory symptomCategory;
+public class SymptomSelectorMenu extends AbstractCLIMenu  {
 	
 	public SymptomSelectorMenu(UserInputHandler userInputHandler, SymptomContainer symptomContainer, SymptomCategory symptomCategory) {
-		super(userInputHandler, menuBuilder(symptomContainer.filterSymptomsByCategory(symptomCategory)));
+		super(userInputHandler, menuBuilder(symptomCategory, userInputHandler, symptomContainer));
+	}
+
+	private static MenuContainer menuBuilder(SymptomCategory symptomCategory, UserInputHandler userInputHandler, SymptomContainer symptomContainer) {
 		
-		this.symptomContainer = symptomContainer;
-		this.symptomCategory = symptomCategory;
-	}
+		MenuContainer menuItems = new MenuContainer();
 
-	@Override
-	protected void displayMenuHeader() {
-		System.out.println("- " + symptomCategory.getLabel() + " -");		
-	}
-
-	@Override
-	protected void displayExtrtaMenuInformation(SymptomSelectorMenuItem menuItem) {
-		Symptom subItem = menuItem.getSymptom();
-		System.out.println("\t" + subItem.getSymptomState().getLabel());
-	}
-	
-	@Override
-	protected boolean process(SymptomSelectorMenuItem userChoice) {
-
-		// Launch sub-menu where the user can designate the state of the current symptom
-		Symptom chosenSymptom = userChoice.getSymptom();
-		new SymptomStateMenu(this.userInputHandler, symptomContainer, chosenSymptom).execute();
-
-		return false; // return to the calling Menu
-	}
-
-	private static List<SymptomSelectorMenuItem> menuBuilder(SymptomContainer symptomContainer) {
-		List<SymptomSelectorMenuItem> menuItems = new ArrayList<>();
+		menuItems.add(new DecoratorMenuItem("Symptoms of the " + symptomCategory.getLabel()));
+		menuItems.add(new DecoratorMenuItem("====================="));
 
 		int index = 1;
-		for (Symptom symptom : symptomContainer.getSymptoms()) {
+		for (Symptom symptom : symptomContainer.filterSymptomsByCategory(symptomCategory).getSymptoms()) {
 				SymptomSelectorMenuItem menuItem =
-						new SymptomSelectorMenuItem("" + index, symptom);
+						new SymptomSelectorMenuItem("" + index, symptom, userInputHandler);
 				
 				if (! menuItems.contains(menuItem)) {
 					menuItems.add(menuItem);
 					index++;
 				}
 			}
+
+		menuItems.add(new DecoratorMenuItem("---------------------"));
 			
 		return menuItems;
 	}
+
 }

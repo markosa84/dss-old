@@ -2,13 +2,13 @@ package hu.ak_academy.dss.menu.item;
 
 public abstract class AbstractMenuItem implements MenuItem {
 
-	private final static boolean DEFAULT_VISIBLE = true;
-	private final static boolean DEFAULT_SELECTABLE = true;
+	public final static boolean DEFAULT_VISIBLE = true;
+	public final static boolean DEFAULT_SELECTABLE = true;
 	
-	private String prefix;
-	private String label;
-	private boolean visible;
-	private boolean selectable;
+	protected String prefix;
+	protected String label;
+	protected boolean visible;
+	protected boolean selectable;
 
 	public AbstractMenuItem(String prefix, String label, boolean visible, boolean selectable) {
 		this.prefix = prefix;
@@ -35,6 +35,18 @@ public abstract class AbstractMenuItem implements MenuItem {
 	
 	public boolean isSelectable() {
 		return this.selectable;
+	}
+	
+	public void display() {
+		System.out.println(this);
+	}
+	
+	public boolean validateUserInput(String userInput) {
+		if (this.selectable && (this.prefix.equals(userInput) || this.label.equals(userInput)) ) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	@Override

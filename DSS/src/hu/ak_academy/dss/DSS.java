@@ -30,7 +30,6 @@ public class DSS {
 			SymptomContainer allSymptoms = new SymptomContainer(GlobalSymptoms);
 			
 			new SymptomCategoryMenu(userInputHandler, allSymptoms).execute();
-//			new SymptomCategoryMenu(input, allSymptoms).execute();
 			
 			System.out.println("Good Bye!");
 		}

@@ -6,6 +6,11 @@ public interface MenuItem {
 	boolean isVisible();
 	boolean isSelectable();
 	
+	void display();
+	boolean validateUserInput(String userInput);
+	
+	boolean execute();
+	
 	@Override
 	String toString();
 

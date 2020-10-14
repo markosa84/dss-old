@@ -2,7 +2,7 @@ package hu.ak_academy.dss;
 
 import java.util.Scanner;
 
-import hu.ak_academy.dss.menu.SymptomCategoryMenu;
+import hu.ak_academy.dss.menu.builder.SymptomCategoryMenuBuilder;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
 import hu.ak_academy.dss.symptom.BadBreath;
 import hu.ak_academy.dss.symptom.Cough;
@@ -29,7 +29,7 @@ public class DSS {
 						
 			SymptomContainer allSymptoms = new SymptomContainer(GlobalSymptoms);
 			
-			new SymptomCategoryMenu(userInputHandler, allSymptoms).execute();
+			SymptomCategoryMenuBuilder.build(userInputHandler, allSymptoms).execute();
 			
 			System.out.println("Good Bye!");
 		}

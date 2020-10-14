@@ -1,14 +1,13 @@
 package hu.ak_academy.dss.menu.item;
 
-import hu.ak_academy.dss.menu.SymptomStateMenu;
-import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
+import hu.ak_academy.dss.menu.executor.MenuItemExecutor;
 import hu.ak_academy.dss.symptom.Symptom;
 import hu.ak_academy.dss.symptom.state.SymptomState;
 
 public class SymptomCategorySubSymptomMenuItem extends SymptomSelectorMenuItem {
 
-	public SymptomCategorySubSymptomMenuItem(Symptom symptom, UserInputHandler userInputHandler) {
-		super(null, symptom, userInputHandler);
+	public SymptomCategorySubSymptomMenuItem(Symptom symptom, MenuItemExecutor menuItemExecutor) {
+		super(NO_PREFIX, symptom,  menuItemExecutor);
 	}
 
 	@Override
@@ -26,12 +25,5 @@ public class SymptomCategorySubSymptomMenuItem extends SymptomSelectorMenuItem {
 		
 		return false;
 	}
-	
-	@Override
-	public boolean execute() {
 
-		new SymptomStateMenu(this.userInputHandler, symptom).execute();
-
-		return true; // new iteration of the main menu
-	}
 }

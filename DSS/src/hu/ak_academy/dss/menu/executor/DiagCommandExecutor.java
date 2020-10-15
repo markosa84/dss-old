@@ -2,7 +2,7 @@ package hu.ak_academy.dss.menu.executor;
 
 import java.util.Arrays;
 
-import hu.ak_academy.dss.symptom.container.SymptomContainer;
+import hu.ak_academy.dss.container.SymptomContainer;
 import hu.ak_academy.dss.symptom.state.SymptomState;
 
 public class DiagCommandExecutor extends AbstractMenuItemExecutor {

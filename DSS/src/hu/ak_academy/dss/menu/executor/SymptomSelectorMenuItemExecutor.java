@@ -1,6 +1,6 @@
 package hu.ak_academy.dss.menu.executor;
 
-import hu.ak_academy.dss.menu.builder.SymptomStateMenuBuilder;
+import hu.ak_academy.dss.builder.SymptomStateMenuBuilder;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
 import hu.ak_academy.dss.symptom.Symptom;
 

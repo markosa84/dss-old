@@ -2,7 +2,7 @@ package hu.ak_academy.dss.menu;
 
 import java.util.Scanner;
 
-import hu.ak_academy.dss.menu.container.MenuContainer;
+import hu.ak_academy.dss.container.MenuContainer;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
 
 public class GenericCLIMenu {

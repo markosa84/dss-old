@@ -1,9 +1,9 @@
 package hu.ak_academy.dss.menu.executor;
 
-import hu.ak_academy.dss.menu.builder.SymptomSelectorMenuBuilder;
+import hu.ak_academy.dss.builder.SymptomSelectorMenuBuilder;
+import hu.ak_academy.dss.container.SymptomContainer;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
 import hu.ak_academy.dss.symptom.category.SymptomCategory;
-import hu.ak_academy.dss.symptom.container.SymptomContainer;
 
 public class SymptomCategoryMenuItemExecutor extends AbstractMenuItemExecutor {
 

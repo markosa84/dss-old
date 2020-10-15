@@ -1,7 +1,8 @@
-package hu.ak_academy.dss.menu.builder;
+package hu.ak_academy.dss.builder;
 
+import hu.ak_academy.dss.container.MenuContainer;
+import hu.ak_academy.dss.container.SymptomContainer;
 import hu.ak_academy.dss.menu.GenericCLIMenu;
-import hu.ak_academy.dss.menu.container.MenuContainer;
 import hu.ak_academy.dss.menu.executor.BackCommandExecutor;
 import hu.ak_academy.dss.menu.executor.DiagCommandExecutor;
 import hu.ak_academy.dss.menu.executor.MenuCommandExecutor;
@@ -20,7 +21,6 @@ import hu.ak_academy.dss.menu.item.SymptomSelectorMenuItem;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
 import hu.ak_academy.dss.symptom.Symptom;
 import hu.ak_academy.dss.symptom.category.SymptomCategory;
-import hu.ak_academy.dss.symptom.container.SymptomContainer;
 
 public class SymptomCategoryMenuBuilder {
 
@@ -65,7 +65,7 @@ public class SymptomCategoryMenuBuilder {
 	private static MenuContainer subMenuBuilder(UserInputHandler userInputHandler, SymptomContainer symptomContainer, SymptomCategory symptomCategory) {
 		MenuContainer menuItems = new MenuContainer();
 
-		for (Symptom symptom : symptomContainer.filterSymptomsByCategory(symptomCategory).getSymptoms()) {
+		for (Symptom symptom : symptomContainer.filterSymptomsByCategory(symptomCategory).getItems()) {
 				
 			MenuItemExecutor executor =
 					new SymptomCategorySubSymptomMenuItemExecutor(userInputHandler,symptom);

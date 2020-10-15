@@ -4,8 +4,17 @@ import hu.ak_academy.dss.symptom.state.SymptomState;
 
 public abstract class AbstractSymptom implements Symptom {
 
-	// Property to store the result (state) of the symptom, defaulting to Not Checked
-	private SymptomState symptomState = SymptomState.NC;
+	// Property to store the result (state) of the symptom
+	protected SymptomState symptomState;
+
+	// Default state of the symptom is not checked
+	public AbstractSymptom() {
+		this.symptomState = SymptomState.NC;
+	}
+	
+	public AbstractSymptom(SymptomState symptomState) {
+		this.symptomState = symptomState;
+	}
 
 	// method to get the state of the Symtpom
 	public final SymptomState getSymptomState() {

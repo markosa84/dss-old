@@ -2,15 +2,10 @@ package hu.ak_academy.dss;
 
 import java.util.Scanner;
 
-import hu.ak_academy.dss.menu.builder.SymptomCategoryMenuBuilder;
+import hu.ak_academy.dss.builder.GlobalSymptomContainerBuilder;
+import hu.ak_academy.dss.builder.SymptomCategoryMenuBuilder;
+import hu.ak_academy.dss.container.SymptomContainer;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
-import hu.ak_academy.dss.symptom.BadBreath;
-import hu.ak_academy.dss.symptom.Cough;
-import hu.ak_academy.dss.symptom.HeadAche;
-import hu.ak_academy.dss.symptom.SoreThroat;
-import hu.ak_academy.dss.symptom.Symptom;
-import hu.ak_academy.dss.symptom.ToothAche;
-import hu.ak_academy.dss.symptom.container.SymptomContainer;
 
 public class DSS {
 	
@@ -18,16 +13,7 @@ public class DSS {
 		try (Scanner input = new Scanner(System.in)) {
 
 			UserInputHandler userInputHandler = new UserInputHandler(input);
-
-			Symptom[] GlobalSymptoms = { 
-					new BadBreath(), 
-					new Cough(),
-					new ToothAche(),
-					new SoreThroat(),
-					new HeadAche()
-			};
-						
-			SymptomContainer allSymptoms = new SymptomContainer(GlobalSymptoms);
+			SymptomContainer allSymptoms = GlobalSymptomContainerBuilder.build();
 			
 			SymptomCategoryMenuBuilder.build(userInputHandler, allSymptoms).execute();			
 			

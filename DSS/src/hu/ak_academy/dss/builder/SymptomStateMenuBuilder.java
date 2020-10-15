@@ -1,7 +1,7 @@
-package hu.ak_academy.dss.menu.builder;
+package hu.ak_academy.dss.builder;
 
+import hu.ak_academy.dss.container.MenuContainer;
 import hu.ak_academy.dss.menu.GenericCLIMenu;
-import hu.ak_academy.dss.menu.container.MenuContainer;
 import hu.ak_academy.dss.menu.executor.BackCommandExecutor;
 import hu.ak_academy.dss.menu.executor.MenuCommandExecutor;
 import hu.ak_academy.dss.menu.executor.MenuItemExecutor;

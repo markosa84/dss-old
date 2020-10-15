@@ -1,5 +1,8 @@
 package hu.ak_academy.dss.symptom;
 
+import java.util.List;
+
+import hu.ak_academy.dss.symptom.category.SymptomCategory;
 import hu.ak_academy.dss.symptom.state.SymptomState;
 
 public abstract class AbstractSymptom implements Symptom {
@@ -46,4 +49,13 @@ public abstract class AbstractSymptom implements Symptom {
 	    
 		return this.getClass().equals(otherSymptom.getClass()) && this.symptomState == otherSymptom.getSymptomState();
 	}
+
+	public boolean filterByState(List<SymptomState> filter) {
+		return filter.contains(symptomState);
+	}
+	
+	public boolean filterByCategory(List<SymptomCategory> filter) {
+		return filter.contains(getSymptomCategory());		
+	}
+
 }

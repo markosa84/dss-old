@@ -18,7 +18,7 @@ public class DiagCommandExecutor extends AbstractMenuItemExecutor {
 		System.out.println();
 		
 		SymptomContainer patientSymptoms = symptomContainer.filterSymptomsByState(Arrays.asList(SymptomState.YES,SymptomState.NO));
-		if (patientSymptoms.numberOfSymptomsByState(SymptomState.YES) == 0) {
+		if (patientSymptoms.numberOfSymptoms(SymptomState.YES) == 0) {
 			System.out.println("There are no positive symptoms selected for the patient!");
 		} else {
 			System.out.println("Runing analisys on the following symptoms:");

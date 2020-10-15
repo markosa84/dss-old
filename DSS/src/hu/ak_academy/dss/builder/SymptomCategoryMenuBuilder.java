@@ -42,7 +42,7 @@ public class SymptomCategoryMenuBuilder {
 		for (SymptomCategory symptomCategory : SymptomCategory.values()) {
 
 			// Only add category to menu if there are symptoms defined in that category
-			int numberOfItems = symptomContainer.numberOfSymptomsByCategory(symptomCategory);
+			int numberOfItems = symptomContainer.numberOfSymptoms(symptomCategory);
 			if (numberOfItems > 0) {
 				MenuItemExecutor executor =
 						new SymptomCategoryMenuItemExecutor(symptomCategory,userInputHandler,symptomContainer);
@@ -65,7 +65,7 @@ public class SymptomCategoryMenuBuilder {
 	private static MenuContainer subMenuBuilder(UserInputHandler userInputHandler, SymptomContainer symptomContainer, SymptomCategory symptomCategory) {
 		MenuContainer menuItems = new MenuContainer();
 
-		for (Symptom symptom : symptomContainer.filterSymptomsByCategory(symptomCategory).getItems()) {
+		for (Symptom symptom : symptomContainer.filterSymptoms(symptomCategory).getItems()) {
 				
 			MenuItemExecutor executor =
 					new SymptomCategorySubSymptomMenuItemExecutor(userInputHandler,symptom);

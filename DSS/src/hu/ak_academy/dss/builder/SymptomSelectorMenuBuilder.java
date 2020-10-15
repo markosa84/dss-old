@@ -36,7 +36,7 @@ public class SymptomSelectorMenuBuilder {
 		menuItems.add(new CommandMenuItem("b", "back", new BackCommandExecutor()));
 
 		int index = 1;
-		for (Symptom symptom : symptomContainer.filterSymptomsByCategory(symptomCategory).getItems()) {
+		for (Symptom symptom : symptomContainer.filterSymptoms(symptomCategory).getItems()) {
 				
 			MenuItemExecutor executor =
 					new SymptomSelectorMenuItemExecutor(userInputHandler,symptom);

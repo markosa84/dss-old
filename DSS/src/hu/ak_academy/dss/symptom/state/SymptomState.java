@@ -1,6 +1,7 @@
 package hu.ak_academy.dss.symptom.state;
 
 public enum SymptomState {
+	
 	YES("Yes"), // value specifies that the symptom is checked for and it is PRESENT on the patient
 	NO("No"),	// value specifies that the symptom is checked for and it is NOT present on the patient
 	NC("n/c");	// value specifies that the symptom is NOT CHECKED at all

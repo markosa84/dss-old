@@ -2,7 +2,7 @@ package hu.ak_academy.dss.container;
 
 import hu.ak_academy.dss.disease.Disease;
 
-public class DiseaseContainer extends ObjectContainer c {
+public class DiseaseContainer extends ObjectContainer <Disease> {
 
 	public DiseaseContainer() {
 		super();

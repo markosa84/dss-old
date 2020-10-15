@@ -17,17 +17,44 @@ public class SymptomContainer extends ObjectContainer <Symptom> {
 	public SymptomContainer(Symptom[] items) {
 		super(items);
 	}
-	
-	public SymptomContainer filterSymptomsByCategory(SymptomCategory filter) {
+
+	public SymptomContainer filterSymptoms(SymptomState filter) {
+		List<SymptomState> filterList = new ArrayList<>(Arrays.asList(filter));
+		return filterSymptomsByState(filterList);
+	}
+
+	public SymptomContainer filterSymptoms(SymptomCategory filter) {
 		List<SymptomCategory> filterList = new ArrayList<>(Arrays.asList(filter));
 		return filterSymptomsByCategory(filterList);
+	}
+
+	public int numberOfSymptoms(SymptomState filter) {
+		List<SymptomState> filterList = new ArrayList<SymptomState>(Arrays.asList(filter));
+		return filterSymptomsByState(filterList).size();
+	}
+
+	public int numberOfSymptoms(SymptomCategory filter) {
+		List<SymptomCategory> filterList = new ArrayList<SymptomCategory>(Arrays.asList(filter));
+		return filterSymptomsByCategory(filterList).size();	
+	}
+
+	public SymptomContainer filterSymptomsByState(List<SymptomState> filter) {
+		SymptomContainer filteredSymptoms = new SymptomContainer();
+
+		for (Symptom symptom : items) {
+			if (symptom.filterByState(filter)) {
+				filteredSymptoms.add(symptom);
+			}
+		}
+		
+		return filteredSymptoms;
 	}
 
 	public SymptomContainer filterSymptomsByCategory(List<SymptomCategory> filter) {
 		SymptomContainer filteredSymptoms = new SymptomContainer();
 
 		for (Symptom symptom : items) {
-			if (filter.contains(symptom.getSymptomCategory())) {
+			if (symptom.filterByCategory(filter)) {
 				filteredSymptoms.add(symptom);
 			}
 		}
@@ -43,57 +70,6 @@ public class SymptomContainer extends ObjectContainer <Symptom> {
 		}		
 
 		throw new IllegalArgumentException("No symptom found with label " + label);
-	}
-
-	public SymptomContainer filterSymptomsByState(SymptomState filter) {
-		List<SymptomState> filterList = new ArrayList<>(Arrays.asList(filter));
-		return filterSymptomsByState(filterList);
-	}
-
-	public int numberOfSymptomsByState(SymptomState filter) {
-		List<SymptomState> filterList = new ArrayList<SymptomState>(Arrays.asList(filter));
-		return numberOfSymptomsByState(filterList);
-	}
-
-	public int numberOfSymptomsByCategory(SymptomCategory filter) {
-		List<SymptomCategory> filterList = new ArrayList<SymptomCategory>(Arrays.asList(filter));
-		return numberOfSymptomsByCategory(filterList);	
-	}
-
-	public SymptomContainer filterSymptomsByState(List<SymptomState> filter) {
-		SymptomContainer filteredSymptoms = new SymptomContainer();
-
-		for (Symptom symptom : items) {
-			if (filter.contains(symptom.getSymptomState())) {
-				filteredSymptoms.add(symptom);
-			}
-		}
-		
-		return filteredSymptoms;
-	}
-
-	public int numberOfSymptomsByState(List<SymptomState> filter) {
-		int result = 0;
-		
-		for (Symptom symptom : items) {
-			if (filter.contains(symptom.getSymptomState())) {
-				result++;
-			}
-		}
-		
-		return result;
-	}
-
-	public int numberOfSymptomsByCategory(List<SymptomCategory> filter) {
-		int result = 0;
-		
-		for (Symptom symptom : items) {
-			if (filter.contains(symptom.getSymptomCategory())) {
-				result++;
-			}
-		}
-		
-		return result;
 	}
 
 	@Override

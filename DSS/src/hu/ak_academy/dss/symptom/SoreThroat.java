@@ -6,7 +6,7 @@ public class SoreThroat extends AbstractSymptom {
 
 	@Override
 	public String getLabel() {
-		return "Sore throat";
+		return "sore throat";
 	}
 
 	@Override

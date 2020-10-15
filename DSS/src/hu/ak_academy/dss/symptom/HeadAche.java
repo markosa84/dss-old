@@ -6,7 +6,7 @@ public class HeadAche extends AbstractSymptom {
 
 	@Override
 	public String getLabel() {
-		return "Headache";
+		return "headache";
 	}
 
 	@Override

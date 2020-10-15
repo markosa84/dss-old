@@ -6,14 +6,6 @@ public abstract class AbstractSymptom implements Symptom {
 
 	// Property to store the result (state) of the symptom, defaulting to Not Checked
 	private SymptomState symptomState = SymptomState.NC;
-	
-	// this property is used for what exactly? Do we need it later? To be clarified w Reza
-//	protected UserInputHandler userInput;
-//	
-//	public AbstractSymptom(UserInputHandler userInput) {
-//		this.userInput = userInput;
-//	}
-	
 
 	// method to get the state of the Symtpom
 	public final SymptomState getSymptomState() {

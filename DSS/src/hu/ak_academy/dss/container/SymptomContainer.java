@@ -35,9 +35,29 @@ public class SymptomContainer extends ObjectContainer <Symptom> {
 		return filteredSymptoms;
 	}
 
+	public Symptom getSymptomByLabel(String label) {
+		for (Symptom symptom : items) {
+			if (symptom.getLabel().equals(label)) {
+				return symptom;
+			}
+		}		
+
+		throw new IllegalArgumentException("No symptom found with label " + label);
+	}
+
 	public SymptomContainer filterSymptomsByState(SymptomState filter) {
 		List<SymptomState> filterList = new ArrayList<>(Arrays.asList(filter));
 		return filterSymptomsByState(filterList);
+	}
+
+	public int numberOfSymptomsByState(SymptomState filter) {
+		List<SymptomState> filterList = new ArrayList<SymptomState>(Arrays.asList(filter));
+		return numberOfSymptomsByState(filterList);
+	}
+
+	public int numberOfSymptomsByCategory(SymptomCategory filter) {
+		List<SymptomCategory> filterList = new ArrayList<SymptomCategory>(Arrays.asList(filter));
+		return numberOfSymptomsByCategory(filterList);	
 	}
 
 	public SymptomContainer filterSymptomsByState(List<SymptomState> filter) {
@@ -52,21 +72,6 @@ public class SymptomContainer extends ObjectContainer <Symptom> {
 		return filteredSymptoms;
 	}
 
-	public Symptom getSymptomByLabel(String label) {
-		for (Symptom symptom : items) {
-			if (symptom.getLabel().equals(label)) {
-				return symptom;
-			}
-		}		
-
-		throw new IllegalArgumentException("No symptom found with label " + label);
-	}
-
-	public int numberOfSymptomsByState(SymptomState filter) {
-		List<SymptomState> filterList = new ArrayList<SymptomState>(Arrays.asList(filter));
-		return numberOfSymptomsByState(filterList);
-	}
-
 	public int numberOfSymptomsByState(List<SymptomState> filter) {
 		int result = 0;
 		
@@ -78,10 +83,6 @@ public class SymptomContainer extends ObjectContainer <Symptom> {
 		
 		return result;
 	}
-
-	public int numberOfSymptomsByCategory(SymptomCategory filter) {
-		List<SymptomCategory> filterList = new ArrayList<SymptomCategory>(Arrays.asList(filter));
-		return numberOfSymptomsByCategory(filterList);	}
 
 	public int numberOfSymptomsByCategory(List<SymptomCategory> filter) {
 		int result = 0;

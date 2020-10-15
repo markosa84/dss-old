@@ -2,7 +2,14 @@ package hu.ak_academy.dss.symptom.category;
 
 public enum SymptomCategory {
 
-	MOUTH("mouth"), HEAD("head"), NOSE("nose"), CHEST("chest"), WHOLEBODY("whole body"), EYES("eyes"), LEGS("legs"), HANDS("hands");
+	MOUTH("mouth"),
+	HEAD("head"),
+	NOSE("nose"),
+	CHEST("chest"),
+	WHOLEBODY("whole body"),
+	EYES("eyes"),
+	LEGS("legs"),
+	HANDS("hands");
 
 	private String label;
 

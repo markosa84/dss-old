@@ -20,7 +20,6 @@ public class MenuContainer extends ObjectContainer <MenuItem> {
 
 		for (MenuItem item : this.items) {
 			item.display();
-			//this.displayExtrtaMenuInformation(menuItem);
 		}
 	}
 	
@@ -35,16 +34,16 @@ public class MenuContainer extends ObjectContainer <MenuItem> {
 		return false;
 	}
 
-//	public MenuItem findUserInput(String userInput) {
-//
-//		for (MenuItem item : this.items) {
-//			if (item.validateUserInput(userInput)) {
-//				return item;
-//			}		
-//		}
-//
-//		return null;
-//	}
+	public MenuItem findUserInput(String userInput) {
+
+		for (MenuItem item : this.items) {
+			if (item.validateUserInput(userInput)) {
+				return item;
+			}		
+		}
+
+		return null;
+	}
 
 	public boolean executeUserInput(String userInput) {
 

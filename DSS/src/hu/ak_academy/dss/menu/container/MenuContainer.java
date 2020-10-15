@@ -20,6 +20,12 @@ public class MenuContainer {
 		this.menuItems.add(menuItem);
 	}
 
+	public void add(MenuContainer otherMenuContainer) {
+		for (MenuItem otherMenuItem : otherMenuContainer.getMenuItems()) {
+			this.add(otherMenuItem);			
+		}
+	}
+
 	public boolean contains(MenuItem otherMenuItem) {
 		if (menuItems.contains(otherMenuItem)) {
 			return true;

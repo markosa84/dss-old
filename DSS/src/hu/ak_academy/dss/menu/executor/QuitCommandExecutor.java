@@ -1,5 +1,7 @@
 package hu.ak_academy.dss.menu.executor;
 
+import hu.ak_academy.dss.menu.userinputhandler.UserQuitRequestException;
+
 public class QuitCommandExecutor extends AbstractMenuItemExecutor {
 
 	public QuitCommandExecutor() {
@@ -8,8 +10,7 @@ public class QuitCommandExecutor extends AbstractMenuItemExecutor {
 
 	@Override
 	public boolean execute() {
-		System.out.println("Quit command executed!");
-		return false;
+		throw new UserQuitRequestException("Quit command executed!");
 	}
 
 }

@@ -10,6 +10,8 @@ public interface Symptom {
 	// this should return enum Organ, not the name property of the enum
 	SymptomCategory getSymptomCategory();
 
+	boolean isChecked();
+	
 	// we will need to compare symptom Objects
 	boolean equals(Object other);
 	

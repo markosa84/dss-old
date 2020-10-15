@@ -11,6 +11,7 @@ import hu.ak_academy.dss.menu.executor.SymptomCategoryMenuItemExecutor;
 import hu.ak_academy.dss.menu.executor.SymptomSelectorMenuItemExecutor;
 import hu.ak_academy.dss.menu.item.CommandMenuItem;
 import hu.ak_academy.dss.menu.item.DecoratorMenuItem;
+import hu.ak_academy.dss.menu.item.MenuItem;
 import hu.ak_academy.dss.menu.item.SymptomSelectorMenuItem;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
 import hu.ak_academy.dss.symptom.Symptom;
@@ -27,11 +28,12 @@ public class SymptomSelectorMenuBuilder {
 		
 		MenuContainer menuItems = new MenuContainer();
 
-		menuItems.add(new CommandMenuItem("m", "menu", new MenuCommandExecutor()));
-		menuItems.add(new CommandMenuItem("b", "back", new BackCommandExecutor()));
-
 		menuItems.add(new DecoratorMenuItem("Symptoms of the " + symptomCategory.getLabel()));
 		menuItems.add(new DecoratorMenuItem("====================="));
+
+		menuItems.add(new CommandMenuItem("q", "quit", new QuitCommandExecutor()));
+		menuItems.add(new CommandMenuItem("m", "menu", new MenuCommandExecutor()));
+		menuItems.add(new CommandMenuItem("b", "back", new BackCommandExecutor()));
 
 		int index = 1;
 		for (Symptom symptom : symptomContainer.filterSymptomsByCategory(symptomCategory).getSymptoms()) {
@@ -39,14 +41,12 @@ public class SymptomSelectorMenuBuilder {
 			MenuItemExecutor executor =
 					new SymptomSelectorMenuItemExecutor(userInputHandler,symptom);
 
-			SymptomSelectorMenuItem menuItem =
+			MenuItem menuItem =
 						new SymptomSelectorMenuItem("" + index, symptom, executor);
 				
-				if (! menuItems.contains(menuItem)) {
-					menuItems.add(menuItem);
-					index++;
-				}
-			}
+			menuItems.add(menuItem);
+			index++;
+		}
 
 		menuItems.add(new DecoratorMenuItem("---------------------"));
 			

@@ -4,7 +4,7 @@ import hu.ak_academy.dss.menu.executor.MenuItemExecutor;
 
 public abstract class AbstractMenuItem implements MenuItem {
 
-	public final static String NO_PREFIX = null;
+	public final static String NO_SHORTCUT = null;
 	public final static MenuItemExecutor NO_EXECUTOR = null;
 
 	public final static boolean VISIBLE = true;
@@ -15,15 +15,15 @@ public abstract class AbstractMenuItem implements MenuItem {
 	public final static boolean NOT_SELECTABLE = false;
 	public final static boolean DEFAULT_SELECTABLE = SELECTABLE;
 	
-	protected String prefix;
+	protected String shortcut;
 	protected String label;
 	protected boolean visible;
 	protected boolean selectable;
 	
 	protected MenuItemExecutor menuItemExecutor;
 
-	public AbstractMenuItem(String prefix, String label, boolean visible, boolean selectable, MenuItemExecutor menuItemExecutor) {
-		this.prefix = prefix;
+	public AbstractMenuItem(String shortcut, String label, boolean visible, boolean selectable, MenuItemExecutor menuItemExecutor) {
+		this.shortcut = shortcut;
 		this.label = label;
 		this.visible = visible;
 		this.selectable = selectable;
@@ -38,8 +38,8 @@ public abstract class AbstractMenuItem implements MenuItem {
 		this(prefix,label,DEFAULT_VISIBLE, DEFAULT_SELECTABLE, menuItemExecutor);
 	}
 	
-	public String getPrefix() {
-		return prefix;
+	public String getShortcut() {
+		return shortcut;
 	}
 
 	public String getLabel() {
@@ -61,7 +61,13 @@ public abstract class AbstractMenuItem implements MenuItem {
 	}
 	
 	public boolean validateUserInput(String userInput) {
-		if (this.selectable && (this.prefix.equals(userInput) || this.label.equals(userInput)) ) {
+		if (this.selectable && 
+				( 
+						(this.shortcut != null && 
+							this.shortcut.toLowerCase().equals(userInput.toLowerCase())) || 
+							this.label.toLowerCase().equals(userInput.toLowerCase())
+						)
+				) {
 			return true;
 		}
 		
@@ -81,8 +87,8 @@ public abstract class AbstractMenuItem implements MenuItem {
 	public String toString() {
 		String result = "";
 		
-		if (prefix != null) {
-			result += prefix + ". ";
+		if (shortcut != null) {
+			result += shortcut + ". ";
 		}
 		
 		result += label;

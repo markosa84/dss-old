@@ -24,6 +24,10 @@ public abstract class AbstractSymptom implements Symptom {
 	public final void setSymptomState(SymptomState symptomState) {
 		this.symptomState = symptomState;
 	};
+	
+	public final boolean isChecked() {
+		return this.symptomState != SymptomState.NC;
+	}
 
 	@Override
 	public String toString() {
@@ -32,7 +36,7 @@ public abstract class AbstractSymptom implements Symptom {
 	
 	// we will need to compare symptom Objects based on the actual class (if using multiple classes, and on the state of the symptom)
 	@Override
-	public boolean equals(Object other) {
+	public final boolean equals(Object other) {
 		if (other == null) return false;
 	    if (other == this) return true;
 	    if (!(other instanceof Symptom)) return false;

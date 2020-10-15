@@ -19,6 +19,6 @@ public class SymptomSelectorMenuItemExecutor extends AbstractMenuItemExecutor {
 
 		SymptomStateMenuBuilder.build(this.userInputHandler, this.symptom).execute();
 	
-		return false;
+		return true;
 	}
 }

@@ -2,24 +2,21 @@ package hu.ak_academy.dss.builder;
 
 import hu.ak_academy.dss.container.MenuContainer;
 import hu.ak_academy.dss.container.SymptomContainer;
+import hu.ak_academy.dss.enums.SymptomCategoryEnum;
+import hu.ak_academy.dss.interfaces.MenuItemExecutor;
+import hu.ak_academy.dss.interfaces.Symptom;
 import hu.ak_academy.dss.menu.GenericCLIMenu;
-import hu.ak_academy.dss.menu.executor.BackCommandExecutor;
 import hu.ak_academy.dss.menu.executor.DiagCommandExecutor;
 import hu.ak_academy.dss.menu.executor.MenuCommandExecutor;
-import hu.ak_academy.dss.menu.executor.MenuItemExecutor;
 import hu.ak_academy.dss.menu.executor.QuitCommandExecutor;
 import hu.ak_academy.dss.menu.executor.SymptomCategoryMenuItemExecutor;
 import hu.ak_academy.dss.menu.executor.SymptomCategorySubSymptomMenuItemExecutor;
-import hu.ak_academy.dss.menu.executor.SymptomSelectorMenuItemExecutor;
 import hu.ak_academy.dss.menu.item.CommandMenuItem;
 import hu.ak_academy.dss.menu.item.DecoratorMenuItem;
-import hu.ak_academy.dss.menu.item.GenericMenuItem;
 import hu.ak_academy.dss.menu.item.MenuItem;
 import hu.ak_academy.dss.menu.item.SymptomCategoryMenuItem;
 import hu.ak_academy.dss.menu.item.SymptomCategorySubSymptomMenuItem;
-import hu.ak_academy.dss.menu.item.SymptomSelectorMenuItem;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
-import hu.ak_academy.dss.symptom.Symptom;
 import hu.ak_academy.dss.symptom.category.SymptomCategory;
 
 public class SymptomCategoryMenuBuilder {
@@ -38,9 +35,13 @@ public class SymptomCategoryMenuBuilder {
 		menuItems.add(new CommandMenuItem("m", "menu", new MenuCommandExecutor()));
 		menuItems.add(new CommandMenuItem("d", "diag", new DiagCommandExecutor(symptomContainer)));
 		
+		
+		
 		int index = 1;
-		for (SymptomCategory symptomCategory : SymptomCategory.values()) {
+		for (SymptomCategoryEnum symptomCategoryEnum : SymptomCategoryEnum.values()) {
 
+			SymptomCategory symptomCategory = new SymptomCategory(symptomCategoryEnum);
+			
 			// Only add category to menu if there are symptoms defined in that category
 			int numberOfItems = symptomContainer.numberOfSymptoms(symptomCategory);
 			if (numberOfItems > 0) {

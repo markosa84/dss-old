@@ -1,34 +1,19 @@
-package hu.ak_academy.dss.symptom.category;
+ package hu.ak_academy.dss.symptom.category;
 
-public enum SymptomCategory {
+import hu.ak_academy.dss.enums.SymptomCategoryEnum;
+import hu.ak_academy.dss.generic.LabeledEnumObject;
+import hu.ak_academy.dss.interfaces.Symptom;
+import hu.ak_academy.dss.interfaces.SymptomFilter;
 
-	MOUTH("mouth"),
-	HEAD("head"),
-	NOSE("nose"),
-	CHEST("chest"),
-	WHOLEBODY("whole body"),
-	EYES("eyes"),
-	LEGS("legs"),
-	HANDS("hands");
+public class SymptomCategory extends LabeledEnumObject<SymptomCategoryEnum> implements SymptomFilter {
 
-	private String label;
-
-	private SymptomCategory(String label) {
-		this.label = label;
+	public SymptomCategory(SymptomCategoryEnum value) {
+		super(value);
 	}
 
-	public String getLabel() {
-		return label;
+	@Override
+	public boolean filter(Symptom symptom) {
+		return this.equals(symptom.getSymptomCategory());
 	}
-
-	public static SymptomCategory getByLabel(String label) {
 	
-		for (SymptomCategory symptomCategory : SymptomCategory.values()) {
-			if (symptomCategory.label.equals(label)) {
-				return symptomCategory;
-			}
-		}
-		
-		throw new IllegalArgumentException("No enum constant with label " + label);
-	}
 }

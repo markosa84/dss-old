@@ -1,10 +1,11 @@
 package hu.ak_academy.dss.menu.executor;
 
 import hu.ak_academy.dss.builder.SymptomStateMenuBuilder;
+import hu.ak_academy.dss.interfaces.MenuItemExecutor;
+import hu.ak_academy.dss.interfaces.Symptom;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
-import hu.ak_academy.dss.symptom.Symptom;
 
-public class SymptomSelectorMenuItemExecutor extends AbstractMenuItemExecutor {
+public class SymptomSelectorMenuItemExecutor implements MenuItemExecutor {
 
 	protected UserInputHandler userInputHandler;
 	protected Symptom symptom;

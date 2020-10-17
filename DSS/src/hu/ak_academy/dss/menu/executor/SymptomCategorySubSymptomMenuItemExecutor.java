@@ -1,11 +1,11 @@
 package hu.ak_academy.dss.menu.executor;
 
-import hu.ak_academy.dss.builder.SymptomStateMenuBuilder;
+import hu.ak_academy.dss.interfaces.MenuItemExecutor;
+import hu.ak_academy.dss.interfaces.Symptom;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
-import hu.ak_academy.dss.symptom.Symptom;
 import hu.ak_academy.dss.symptom.state.SymptomState;
 
-public class SymptomCategorySubSymptomMenuItemExecutor extends AbstractMenuItemExecutor {
+public class SymptomCategorySubSymptomMenuItemExecutor implements MenuItemExecutor {
 
 	protected UserInputHandler userInputHandler;
 	protected Symptom symptom;
@@ -20,14 +20,8 @@ public class SymptomCategorySubSymptomMenuItemExecutor extends AbstractMenuItemE
 
 		//SymptomStateMenuBuilder.build(this.userInputHandler, symptom).execute();
 		
-		if (symptom.getSymptomState() == SymptomState.NC) {
-			symptom.setSymptomState(SymptomState.YES);
-		} else if (symptom.getSymptomState() == SymptomState.YES) {
-			symptom.setSymptomState(SymptomState.NO);
-		} else {
-			symptom.setSymptomState(SymptomState.NC);
-		}
-		
+		symptom.toggleSymptomState();
+				
 		return true;
 	}
 

@@ -1,10 +1,10 @@
-package hu.ak_academy.dss.container;
+package hu.ak_academy.dss.generic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ObjectContainer <T> {
+public abstract class ObjectContainer <T> {
 	protected List<T> items;
 
 	public ObjectContainer() {

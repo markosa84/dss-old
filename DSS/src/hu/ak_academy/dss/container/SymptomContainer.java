@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import hu.ak_academy.dss.symptom.Symptom;
+import hu.ak_academy.dss.generic.ObjectContainer;
+import hu.ak_academy.dss.interfaces.Symptom;
+import hu.ak_academy.dss.interfaces.SymptomFilter;
 import hu.ak_academy.dss.symptom.category.SymptomCategory;
 import hu.ak_academy.dss.symptom.state.SymptomState;
 
@@ -18,43 +20,21 @@ public class SymptomContainer extends ObjectContainer <Symptom> {
 		super(items);
 	}
 
-	public SymptomContainer filterSymptoms(SymptomState filter) {
-		List<SymptomState> filterList = new ArrayList<>(Arrays.asList(filter));
-		return filterSymptomsByState(filterList);
+	public int numberOfSymptoms(SymptomFilter filter) {
+		List<SymptomFilter> filterList = new ArrayList<SymptomFilter>(Arrays.asList(filter));
+		return filterSymptoms(filterList).size();
 	}
 
-	public SymptomContainer filterSymptoms(SymptomCategory filter) {
-		List<SymptomCategory> filterList = new ArrayList<>(Arrays.asList(filter));
-		return filterSymptomsByCategory(filterList);
+	public SymptomContainer filterSymptoms(SymptomFilter filter) {
+		List<SymptomFilter> filterList = new ArrayList<>(Arrays.asList(filter));
+		return filterSymptoms(filterList);
 	}
 
-	public int numberOfSymptoms(SymptomState filter) {
-		List<SymptomState> filterList = new ArrayList<SymptomState>(Arrays.asList(filter));
-		return filterSymptomsByState(filterList).size();
-	}
-
-	public int numberOfSymptoms(SymptomCategory filter) {
-		List<SymptomCategory> filterList = new ArrayList<SymptomCategory>(Arrays.asList(filter));
-		return filterSymptomsByCategory(filterList).size();	
-	}
-
-	public SymptomContainer filterSymptomsByState(List<SymptomState> filter) {
+	public SymptomContainer filterSymptoms(List<SymptomFilter> filters) {
 		SymptomContainer filteredSymptoms = new SymptomContainer();
 
 		for (Symptom symptom : items) {
-			if (symptom.filterByState(filter)) {
-				filteredSymptoms.add(symptom);
-			}
-		}
-		
-		return filteredSymptoms;
-	}
-
-	public SymptomContainer filterSymptomsByCategory(List<SymptomCategory> filter) {
-		SymptomContainer filteredSymptoms = new SymptomContainer();
-
-		for (Symptom symptom : items) {
-			if (symptom.filterByCategory(filter)) {
+			if (symptom.filter(filters)) {
 				filteredSymptoms.add(symptom);
 			}
 		}

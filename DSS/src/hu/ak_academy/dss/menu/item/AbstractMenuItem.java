@@ -1,6 +1,6 @@
 package hu.ak_academy.dss.menu.item;
 
-import hu.ak_academy.dss.menu.executor.MenuItemExecutor;
+import hu.ak_academy.dss.interfaces.MenuItemExecutor;
 
 public abstract class AbstractMenuItem implements MenuItem {
 

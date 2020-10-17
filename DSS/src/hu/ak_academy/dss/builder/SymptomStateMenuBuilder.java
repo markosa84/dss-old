@@ -1,10 +1,12 @@
 package hu.ak_academy.dss.builder;
 
 import hu.ak_academy.dss.container.MenuContainer;
+import hu.ak_academy.dss.enums.SymptomStateEnum;
+import hu.ak_academy.dss.interfaces.MenuItemExecutor;
+import hu.ak_academy.dss.interfaces.Symptom;
 import hu.ak_academy.dss.menu.GenericCLIMenu;
 import hu.ak_academy.dss.menu.executor.BackCommandExecutor;
 import hu.ak_academy.dss.menu.executor.MenuCommandExecutor;
-import hu.ak_academy.dss.menu.executor.MenuItemExecutor;
 import hu.ak_academy.dss.menu.executor.QuitCommandExecutor;
 import hu.ak_academy.dss.menu.executor.SymptomStateMenuItemExecutor;
 import hu.ak_academy.dss.menu.item.CommandMenuItem;
@@ -12,7 +14,6 @@ import hu.ak_academy.dss.menu.item.DecoratorMenuItem;
 import hu.ak_academy.dss.menu.item.GenericMenuItem;
 import hu.ak_academy.dss.menu.item.MenuItem;
 import hu.ak_academy.dss.menu.userinputhandler.UserInputHandler;
-import hu.ak_academy.dss.symptom.Symptom;
 import hu.ak_academy.dss.symptom.state.SymptomState;
 
 public class SymptomStateMenuBuilder {
@@ -32,8 +33,10 @@ public class SymptomStateMenuBuilder {
 		menuItems.add(new DecoratorMenuItem("====================="));
 
 		int index = 1;
-		for (SymptomState symptomState : SymptomState.values()) {
+		for (SymptomStateEnum symptomStateEnum : SymptomStateEnum.values()) {
 
+			SymptomState symptomState = new SymptomState(symptomStateEnum);
+			
 			MenuItemExecutor executor =
 					new SymptomStateMenuItemExecutor(symptom,symptomState);
 			

@@ -1,29 +1,40 @@
 package hu.ak_academy.dss.symptom.state;
 
-public enum SymptomState {
+import hu.ak_academy.dss.enums.SymptomStateEnum;
+import hu.ak_academy.dss.generic.LabeledEnumObject;
+import hu.ak_academy.dss.interfaces.Symptom;
+import hu.ak_academy.dss.interfaces.SymptomFilter;
+
+public class SymptomState extends LabeledEnumObject<SymptomStateEnum> implements SymptomFilter {
+
+	public static final SymptomState SYMPTOMSTATE_NC  = new SymptomState(SymptomStateEnum.NC);
+	public static final SymptomState SYMPTOMSTATE_YES = new SymptomState(SymptomStateEnum.YES);
+	public static final SymptomState SYMPTOMSTATE_NO  = new SymptomState(SymptomStateEnum.NO);
 	
-	YES("Yes"), // value specifies that the symptom is checked for and it is PRESENT on the patient
-	NO("No"),	// value specifies that the symptom is checked for and it is NOT present on the patient
-	NC("n/c");	// value specifies that the symptom is NOT CHECKED at all
-
-	private String label;
-
-	private SymptomState(String label) {
-		this.label = label;
+	public SymptomState(SymptomStateEnum value) {
+		super(value);
 	}
 
-	public String getLabel() {
-		return label;
+	public boolean isChecked() {
+		return this.getValue() != SymptomStateEnum.NC;
 	}
-
-	public static SymptomState getByLabel(String label) {
-		
-		for (SymptomState symptomState : SymptomState.values()) {
-			if (symptomState.label.equals(label)) {
-				return symptomState;
-			}
+	
+	public SymptomState toggleState() {
+		switch (this.getValue()) {
+		case NC:
+			return SYMPTOMSTATE_YES;
+		case YES:
+			return SYMPTOMSTATE_NO;
+		case NO:
+			return SYMPTOMSTATE_NC;
+		default:
+			return SYMPTOMSTATE_NC;
 		}
-		
-		throw new IllegalArgumentException("No enum constant with label " + label);
 	}
+
+	@Override
+	public boolean filter(Symptom symptom) {
+		return this.equals(symptom.getSymptomState());
+	}
+
 }

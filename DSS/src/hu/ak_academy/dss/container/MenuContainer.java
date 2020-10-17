@@ -1,5 +1,6 @@
 package hu.ak_academy.dss.container;
 
+import hu.ak_academy.dss.generic.ObjectContainer;
 import hu.ak_academy.dss.menu.item.MenuItem;
 
 public class MenuContainer extends ObjectContainer <MenuItem> {

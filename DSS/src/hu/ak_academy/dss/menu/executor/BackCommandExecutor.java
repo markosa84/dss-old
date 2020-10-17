@@ -1,10 +1,8 @@
 package hu.ak_academy.dss.menu.executor;
 
-public class BackCommandExecutor extends AbstractMenuItemExecutor {
+import hu.ak_academy.dss.interfaces.MenuItemExecutor;
 
-	public BackCommandExecutor() {
-		// TODO Auto-generated constructor stub
-	}
+public class BackCommandExecutor implements MenuItemExecutor {
 
 	@Override
 	public boolean execute() {

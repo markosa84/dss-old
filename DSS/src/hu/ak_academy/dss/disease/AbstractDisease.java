@@ -1,7 +1,7 @@
 package hu.ak_academy.dss.disease;
 
 import hu.ak_academy.dss.container.SymptomContainer;
-import hu.ak_academy.dss.symptom.Symptom;
+import hu.ak_academy.dss.interfaces.Symptom;
 
 public class AbstractDisease implements Disease {
 	private SymptomContainer symptoms;

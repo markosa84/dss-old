@@ -1,9 +1,10 @@
 package hu.ak_academy.dss.menu.executor;
 
-import hu.ak_academy.dss.symptom.Symptom;
+import hu.ak_academy.dss.interfaces.MenuItemExecutor;
+import hu.ak_academy.dss.interfaces.Symptom;
 import hu.ak_academy.dss.symptom.state.SymptomState;
 
-public class SymptomStateMenuItemExecutor extends AbstractMenuItemExecutor {
+public class SymptomStateMenuItemExecutor implements MenuItemExecutor {
 
 	private Symptom symptom;
 	private SymptomState symptomState;

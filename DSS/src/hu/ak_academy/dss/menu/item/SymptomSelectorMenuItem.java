@@ -1,7 +1,7 @@
 package hu.ak_academy.dss.menu.item;
 
-import hu.ak_academy.dss.menu.executor.MenuItemExecutor;
-import hu.ak_academy.dss.symptom.Symptom;
+import hu.ak_academy.dss.interfaces.MenuItemExecutor;
+import hu.ak_academy.dss.interfaces.Symptom;
 
 public class SymptomSelectorMenuItem extends GenericMenuItem {
 

@@ -1,10 +1,8 @@
 package hu.ak_academy.dss.menu.executor;
 
-public class MenuCommandExecutor extends AbstractMenuItemExecutor {
+import hu.ak_academy.dss.interfaces.MenuItemExecutor;
 
-	public MenuCommandExecutor() {
-		// TODO Auto-generated constructor stub
-	}
+public class MenuCommandExecutor implements MenuItemExecutor {
 
 	@Override
 	public boolean execute() {

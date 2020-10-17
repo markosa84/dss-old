@@ -1,4 +1,4 @@
-package hu.ak_academy.dss.menu.executor;
+package hu.ak_academy.dss.interfaces;
 
 public interface MenuItemExecutor {
 	boolean execute();

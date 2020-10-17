@@ -1,10 +1,15 @@
 package hu.ak_academy.dss.symptom;
 
+import static hu.ak_academy.dss.enums.SymptomCategoryEnum.*;
+
 import hu.ak_academy.dss.symptom.category.SymptomCategory;
 import hu.ak_academy.dss.symptom.state.SymptomState;
 
 public class SoreThroat extends AbstractSymptom {
-	
+
+	private static final String SYMPTOMLABEL = "sore throat";
+	private static final SymptomCategory SYMPTOMCATEGORY = new SymptomCategory(MOUTH);
+
 	public SoreThroat() {
 		super();
 	}	
@@ -14,13 +19,13 @@ public class SoreThroat extends AbstractSymptom {
 	}
 	
 	@Override
-	public String getLabel() {
-		return "sore throat";
+	public String initLabel() {
+		return SYMPTOMLABEL;
 	}
 
 	@Override
-	public SymptomCategory getSymptomCategory() {
-		return SymptomCategory.MOUTH;
+	public SymptomCategory initSymptomCategory() {
+		return SYMPTOMCATEGORY;
 	}
-
+	
 }

@@ -15,7 +15,16 @@ public enum SymptomStateEnum implements LabeledEnum {
 	}
 
 	public String getLabel() {
-		return label;
+		return this.label;
 	}
 
+	public SymptomStateEnum getNext() {
+		
+		SymptomStateEnum[] values = SymptomStateEnum.values();
+				
+		return this.ordinal() < values.length - 1
+        ? values[this.ordinal() + 1]
+        : values[0];
+	
+	}
 }

@@ -20,16 +20,7 @@ public class SymptomState extends LabeledEnumObject<SymptomStateEnum> implements
 	}
 	
 	public SymptomState toggleState() {
-		switch (this.getValue()) {
-		case NC:
-			return SYMPTOMSTATE_YES;
-		case YES:
-			return SYMPTOMSTATE_NO;
-		case NO:
-			return SYMPTOMSTATE_NC;
-		default:
-			return SYMPTOMSTATE_NC;
-		}
+		return new SymptomState(this.getValue().getNext());
 	}
 
 	@Override

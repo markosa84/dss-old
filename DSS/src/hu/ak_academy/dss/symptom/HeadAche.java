@@ -1,23 +1,31 @@
 package hu.ak_academy.dss.symptom;
 
-import hu.ak_academy.dss.userinputhandler.UserInputHandler;
+import static hu.ak_academy.dss.enums.SymptomCategoryEnum.*;
+
+import hu.ak_academy.dss.symptom.category.SymptomCategory;
+import hu.ak_academy.dss.symptom.state.SymptomState;
 
 public class HeadAche extends AbstractSymptom {
 
-	public HeadAche(UserInputHandler userInput) {
-		super(userInput);
+	private static final String SYMPTOMLABEL = "headache";
+	private static final SymptomCategory SYMPTOMCATEGORY = new SymptomCategory(HEAD);
+
+	public HeadAche() {
+		super();
 	}
 
-	@Override
-	public String getDescription() {
-		return "Headache";
-	}
-
-	@Override
-	public String getBodyPart() {
-		return "Head";
+	public HeadAche(SymptomState symptomState) {
+		super(symptomState);
 	}
 	
+	@Override
+	public String initLabel() {
+		return SYMPTOMLABEL;
+	}
 
-
+	@Override
+	public SymptomCategory initSymptomCategory() {
+		return SYMPTOMCATEGORY;
+	}
+	
 }

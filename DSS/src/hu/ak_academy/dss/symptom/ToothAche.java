@@ -1,21 +1,31 @@
 package hu.ak_academy.dss.symptom;
 
-import hu.ak_academy.dss.userinputhandler.UserInputHandler;
+import static hu.ak_academy.dss.enums.SymptomCategoryEnum.*;
+
+import hu.ak_academy.dss.symptom.category.SymptomCategory;
+import hu.ak_academy.dss.symptom.state.SymptomState;
 
 public class ToothAche extends AbstractSymptom {
 
-	public ToothAche(UserInputHandler userInput) {
-		super(userInput);
+	private static final String SYMPTOMLABEL = "toothache";
+	private static final SymptomCategory SYMPTOMCATEGORY = new SymptomCategory(MOUTH);
+
+	public ToothAche() {
+		super();
+	}	
+	
+	public ToothAche(SymptomState symptomState) {
+		super(symptomState);
+	}
+	
+	@Override
+	public String initLabel() {
+		return SYMPTOMLABEL;
 	}
 
 	@Override
-	public String getDescription() {
-		return "toothache";
+	public SymptomCategory initSymptomCategory() {
+		return SYMPTOMCATEGORY;
 	}
-
-	@Override
-	public String getBodyPart() {
-		return "mouth";
-	}
-
+		
 }

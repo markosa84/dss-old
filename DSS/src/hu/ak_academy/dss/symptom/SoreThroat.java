@@ -1,21 +1,31 @@
 package hu.ak_academy.dss.symptom;
 
-import hu.ak_academy.dss.userinputhandler.UserInputHandler;
+import static hu.ak_academy.dss.enums.SymptomCategoryEnum.*;
+
+import hu.ak_academy.dss.symptom.category.SymptomCategory;
+import hu.ak_academy.dss.symptom.state.SymptomState;
 
 public class SoreThroat extends AbstractSymptom {
 
-	public SoreThroat(UserInputHandler userInput) {
-		super(userInput);
+	private static final String SYMPTOMLABEL = "sore throat";
+	private static final SymptomCategory SYMPTOMCATEGORY = new SymptomCategory(MOUTH);
+
+	public SoreThroat() {
+		super();
+	}	
+	
+	public SoreThroat(SymptomState symptomState) {
+		super(symptomState);
+	}
+	
+	@Override
+	public String initLabel() {
+		return SYMPTOMLABEL;
 	}
 
 	@Override
-	public String getDescription() {
-		return "Sore throat";
+	public SymptomCategory initSymptomCategory() {
+		return SYMPTOMCATEGORY;
 	}
-
-	@Override
-	public String getBodyPart() {
-		return "mouth";
-	}
-
+	
 }
